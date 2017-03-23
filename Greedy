@@ -1,0 +1,58 @@
+/* A program to calculate number of coins given as change */
+
+#include <cs50.h>
+#include <stdio.h>
+
+int main(void)
+{
+    float f = 0;
+    
+    do                          // Validate user input
+        {
+            printf("Using a positive number, how much change is owed? ");
+            f = GetFloat();
+            
+            if (f == 0 || f <= 0)
+            printf("Number should be positive ");
+        }while (f <= 0);
+    
+int s = 0;                      // We'll use a counter to keep track of coins used
+    
+int p = f * 1000;               // Float variables are, by their very nature, prone to error
+                                // Lets take the user's input and store it in an easier to work with format
+    
+        while (p>0)
+        {
+            if (p > 249)
+            {
+            //This code simulates a quarter
+                p = p - 250;
+                s++;            // We iterate the counter every time a branch is used
+            }
+            else if (p < 250 && p > 99)
+            {
+            //This code simulates a dime
+                p = p - 100;
+                s++;
+            }
+            else if (p < 100 && p > 49)
+            {
+            //This code simulates a nickel
+                p = p - 50;
+                s++;
+            }
+            else if (p < 50 && p > 0)
+            {
+            //This code simulates a penny
+                p = p - 10;
+                s++;
+            }
+            else
+            {
+                break;
+            }
+        }
+    
+    printf("%i\n", s);          // The program asks for the number of coins, so, we print the value stored in our counter
+    
+}
